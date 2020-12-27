@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group 'de.sailehd'
+version '0.5'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    compile 'com.sun.mail:javax.mail:1.6.2'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+    implementation 'org.jetbrains:annotations:20.1.0'
+    implementation 'org.jetbrains:annotations:20.1.0'
+    compile 'com.jcraft:jsch:0.1.55'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'de.sailehd.Main'
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    archiveName 'MP3-Merger.jar'
+}
